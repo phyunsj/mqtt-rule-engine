@@ -23,6 +23,8 @@ For example,
   }
 ```
 
+However, not able to set the threshold value ( and/or high and low watermarks).
+
 <p align="center">
 <img  width="500px" alt="Alt Text" src="https://g.gravizo.com/svg?%40startuml%3B%0Ahide%20footbox%3B%0Aentity%20%20Sensor%3B%0Aparticipant%20%22Publisher%22%20as%20A%3B%0Aparticipant%20%22Broker%22%20as%20B%3B%0Aparticipant%20%22Subscriber%22%20as%20C%3B%0A...%3B%0Anote%20over%20B%3A%201.%20Filter%20MQTT%20message%3B%0ASensor%20-%3E%20A%3A%20Read%20Sensor%3B%0AA%20-%3E%20B%3A%20%2285%22%20Temperature%20F%3B%0AB-%3Ex%20B%3A%3B%0ASensor%20-%3E%20A%3A%3B%0AA%20-%3E%20B%3A%20%2295%22%3B%0AB-%3Ex%20B%3A%3B%0ASensor%20-%3E%20A%3A%3B%0AA%20-%3E%20B%3A%20%22110%22%3B%0AB%20-%3E%20C%3A%20if%20temp%20%3E%20%22100%22%20F%3B%0A%40enduml%3B"/>
 <p>
