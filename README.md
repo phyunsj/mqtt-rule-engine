@@ -27,7 +27,7 @@ For example,
 <img  width="500px" alt="Alt Text" src="https://g.gravizo.com/svg?%40startuml%3B%0Ahide%20footbox%3B%0Aentity%20%20Sensor%3B%0Aparticipant%20%22Publisher%22%20as%20A%3B%0Aparticipant%20%22Broker%22%20as%20B%3B%0Aparticipant%20%22Subscriber%22%20as%20C%3B%0A...%3B%0Anote%20over%20B%3A%201.%20Filter%20MQTT%20message%3B%0ASensor%20-%3E%20A%3A%20Read%20Sensor%3B%0AA%20-%3E%20B%3A%20%2285%22%20Temperature%20F%3B%0AB-%3Ex%20B%3A%3B%0ASensor%20-%3E%20A%3A%3B%0AA%20-%3E%20B%3A%20%2295%22%3B%0AB-%3Ex%20B%3A%3B%0ASensor%20-%3E%20A%3A%3B%0AA%20-%3E%20B%3A%20%22110%22%3B%0AB%20-%3E%20C%3A%20if%20temp%20%3E%20%22100%22%20F%3B%0A%40enduml%3B"/>
 <p>
  
-=> Set the threshold value for a specific device.
+:arrow_right: Set the threshold value for a specific device.
 
 **Case 2.** [Soil Moisture Sensor](https://learn.sparkfun.com/tutorials/soil-moisture-sensor-hookup-guide?_ga=2.250722821.2011127879.1551811690-2119149971.1551811690) generates 0~880 when the sensor is dry (~0) and when it is completely saturated with moisture (~880).
 
@@ -36,7 +36,7 @@ For example,
 <img  width="500px" alt="Alt Text" src="https://g.gravizo.com/svg?%0A%40startuml%3B%0Ahide%20footbox%3B%0Aentity%20%20Sensor%3B%0Aparticipant%20%22Publisher%22%20as%20A%3B%0Aparticipant%20%22Broker%22%20as%20B%3B%0Aparticipant%20%22Subscriber%22%20as%20C%3B%0A...%3B%0Anote%20over%20B%3A%202.%20Convert%20MQTT%20message%3B%0ASensor%20-%3E%20A%3ARead%20Sensor%3B%0AA%20-%3E%20B%3A%20%22345%22%20Range%200-2047%3B%0AB%20-%3E%20C%3A%20%7B%20%22moisture%22%20%3A%20%2217%22%7D%3B%0A%40enduml%3B"/>
 <p>
  
-=> Calculate (and/or Convert) to specific format
+:arrow_right: Calculate (and/or Convert) to specific format
 
 **Case 3.** TBD
 
