@@ -1,5 +1,8 @@
 
+ 
+## UnitTest Output
 
+> $ make
 
 ```
 === Test Result ===
@@ -28,3 +31,48 @@
 ALL TESTS PASSED
 Tests run: 21
 ```
+
+## SQLite Database
+
+`topicTable` contains MQTT topic as a key and Function Name.
+`funcTable` contains Function Name as a key and Function Code. 
+
+```
+$ sqlite3 code.db
+SQLite version 3.24.0 2018-06-04 14:10:15
+Enter ".help" for usage hints.
+
+sqlite> select * from topicTable;
+city/building11/floor1/temperature|noaction|
+city/building12/floor1/temperature|filter|
+city/building12/floor2/humidity|convert|
+
+sqlite> select * from funcTable;
+noaction|function action(a)
+    return 1, a
+end
+filter|function action(a)
+    if type(tonumber(a)) == "number" then
+        local temperature = math.floor(tonumber(a))
+        if temperature < 10 or temperature > 100 then
+            return  1, "{ 'temperature' : "..tostring(temperature).." }"
+        else
+            return  0, "{ 'temperature' : "..tostring(temperature).." }"
+        end
+    else
+        return 0, "{ 'temperature' : 0 }"
+    end
+end
+convert|function action(a)
+    if type(tonumber(a)) == "number" then
+        local humidity = tonumber(a)
+        humidity = math.floor(math.abs(humidity / 2048 * 100 ))
+        return  1, "{ 'humidity' : "..tostring(humidity).." }"
+    else
+        return  0, "{ 'humidity' : 0 }"
+    end
+end
+sqlite>
+```
+
+
