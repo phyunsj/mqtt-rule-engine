@@ -1,6 +1,6 @@
 
  
-## UnitTest Output
+## UnitTest : lua script , sqlite select/insert/create
 
 > $ make
 
@@ -32,10 +32,18 @@ ALL TESTS PASSED
 Tests run: 21
 ```
 
-## SQLite Database
+## SQLite Database for unittest
 
-`topicTable` contains MQTT topic as a key and Function Name.
-`funcTable` contains Function Name as a key and Function Code. 
+`topicTable` contains :
+
+| MQTT topic (key)  | function name |
+| ------------- | ------------- |
+
+`funcTable` contains :
+
+| function name (key)  | function code |
+| ------------- | ------------- |
+
 
 ```
 $ sqlite3 code.db
@@ -75,4 +83,7 @@ end
 sqlite>
 ```
 
+## UnitTest : MQTT pub/sub
+
+TBD
 
