@@ -88,9 +88,21 @@ end
 sqlite>
 ```
 
-## UnitTest : MQTT pub/sub
+## UnitTest : MQTT Publish/Subscribe with Rules
+
+#### Dependency
 
 ```
+$ pip install paho-mqtt
+$ pip install mock
+```
+
+#### Console Output
+
+```
+$ python --version
+Python 2.7.15
+
 $ python mqtt_rule_test.py
 ('Subscribing to topic', 'city/#')
 test_1_no_record_no_action (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building14/floor1/temperature')
@@ -108,6 +120,20 @@ ok
 Ran 5 tests in 25.029s
 
 OK
+$
 ```
 
+#### test script : mqtt_rule_test.py
 
+
+```
+   def test_4_filter_warn(self):
+        self.mock_callback.reset_mock() 
+        print("Publishing message to topic","city/building12/floor1/temperature")
+        self.client.publish("city/building12/floor1/temperature","110")
+        time.sleep(5)
+        self.assertTrue(self.mock_callback.called)
+        name, args, kwargs =  self.mock_callback.mock_calls[0] 
+        # args[2] : MQTT Message
+        self.assertEqual( args[2].payload , "{ 'temperature' : 110 }")
+ ```
