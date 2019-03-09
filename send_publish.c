@@ -227,6 +227,7 @@ int  mosquitto__rule_engine( const char *topic, const void *payload , char *mqtt
     memcpy(mqtt_out, payload, sizeof(payload));
 
     /* Open the database */
+    /* Idealy db pointer can be initialized when broker is started and maintained in struct mosquitto. Must change mosquitto__rule_engine function prototype in that approach  */
     sqlite3_open("code.db", &db);
     if( SQLITE_OK != sqlite3_errcode(db)) 
        return mqtt_out_flag;
@@ -275,7 +276,7 @@ int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, 
 {
 	log__printf(NULL, MOSQ_LOG_DEBUG, "[%s] mid %d, topic %s, payload [%s], len %d, client address %s, client id %s", __FUNCTION__, mid, topic, payload, payloadlen, mosq->address, mosq->id);
 	struct mosquitto__packet *packet = NULL;
-	char   mosquitto__packet_payload[100];
+	char   mosquitto__packet_payload[100]; // limited to 100 chars for the test purpose. Ideally use a heap variable
 	int packetlen;
 	int rc;
 
