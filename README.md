@@ -84,6 +84,10 @@ Ran 5 tests in 25.029s
 OK
 ```
 
+## Remaining Questions
+
+**How to update or add new function? How to link between `topic` and `function`?**  :bulb: Specify $SYS topic and update SQL table with MQTT message(s) accordingly. Of course, web applicattion is another option to manage SQL table. 
+
 #### Related Posts:
 
 - [Web Thing API Specification](https://iot.mozilla.org/wot/#example-2-a-more-complex-thing-description-with-semantic-annotations)
