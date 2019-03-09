@@ -47,9 +47,20 @@ For example,
 
 **Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
 
-Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to manage MQTT rules with minimum changes (less invasive. My goal is to prove the concept not about redesinging the existing package.) The updated version is available [here](). 
+Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept not about redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
 
+`mosquitto__rule_engine()` is called from `send__real_publish()`. Based on `topic`, either no rule or user-defined lua script is executed.
 
+```
+int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup)
+{
+  ...
+  // Apply rules to build "packet"
+  if(payloadlen > 0 &&  mosquitto__rule_engine( topic, payload, mosquitto__packet_payload ) ) {  
+  ...
+```
+
+`src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit).
 
 #### Related Posts:
 
