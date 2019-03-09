@@ -47,7 +47,7 @@ For example,
 
 **Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
 
-Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept not about redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
+Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept rather than redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
 
 `mosquitto__rule_engine()` is called from `send__real_publish()`. Based on `topic`, either no rule or user-defined lua script is executed.
 
@@ -60,7 +60,29 @@ int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, 
   ...
 ```
 
-`src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit).
+`handler_publish()` from `src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit). Initially it will be `noaction`.
+
+#### [Test Results](https://github.com/phyunsj/mqtt-rule-engine/tree/master/unittest)
+
+```
+$ python mqtt_rule_test.py
+('Subscribing to topic', 'city/#')
+test_1_no_record_no_action (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building14/floor1/temperature')
+ok
+test_2_no_action (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building11/floor1/temperature')
+ok
+test_3_filter_ignore (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor1/temperature')
+ok
+test_4_filter_warn (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor1/temperature')
+ok
+test_5_convert_to_percentage (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor2/humidity')
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 25.029s
+
+OK
+```
 
 #### Related Posts:
 
