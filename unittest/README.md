@@ -90,5 +90,24 @@ sqlite>
 
 ## UnitTest : MQTT pub/sub
 
-TBD
+```
+$ python mqtt_rule_test.py
+('Subscribing to topic', 'city/#')
+test_1_no_record_no_action (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building14/floor1/temperature')
+ok
+test_2_no_action (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building11/floor1/temperature')
+ok
+test_3_filter_ignore (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor1/temperature')
+ok
+test_4_filter_warn (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor1/temperature')
+ok
+test_5_convert_to_percentage (__main__.mqtt_rule_test) ... ('Publishing message to topic', 'city/building12/floor2/humidity')
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 25.029s
+
+OK
+```
+
 
