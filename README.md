@@ -60,7 +60,7 @@ int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, 
   ...
 ```
 
-`handler_publish()` from `src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit). Initially it will be `noaction`.
+`handler_publish()` from `src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit). Assing `noaction` for new entry. 
 
 #### [Test Results](https://github.com/phyunsj/mqtt-rule-engine/tree/master/unittest)
 
