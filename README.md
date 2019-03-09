@@ -45,7 +45,25 @@ For example,
 
 :pushpin: This is langualge/framework-specific example ( Eclipse mosquitto 1.5.7 MQTT broker + sqlite + lua). Therefore, the actual implemenation can be varied.
 
-**Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
+lua script (or none) linked to the certain `topic` is executed. Two return parameters are examined by the caller `mosquitto__rule_engine()`. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
+
+For example, `filter` function. If temperature < 100 (or < 10), it will be dropped.
+```
+function action(a)
+    if type(tonumber(a)) == "number" then
+        local temperature = math.floor(tonumber(a))
+        if temperature < 10 or temperature > 100 then
+            return  1, "{ 'temperature' : "..tostring(temperature).." }"
+        else
+            return  0, "{ 'temperature' : "..tostring(temperature).." }"
+        end
+    else
+        return 0, "{ 'temperature' : 0 }"
+    end
+end
+```
+
+**Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Specially easy string manupulation. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
 
 Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept rather than redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
 
