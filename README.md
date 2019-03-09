@@ -33,7 +33,7 @@ For example,
 <img  width="500px" alt="Alt Text" src="https://g.gravizo.com/svg?%0A%40startuml%3B%0Ahide%20footbox%3B%0Aentity%20%20Sensor%3B%0Aparticipant%20%22Publisher%22%20as%20A%3B%0Aparticipant%20%22Broker%22%20as%20B%3B%0Aparticipant%20%22Subscriber%22%20as%20C%3B%0A...%3B%0Anote%20over%20B%3A%202.%20Convert%20MQTT%20message%3B%0ASensor%20-%3E%20A%3ARead%20Sensor%3B%0AA%20-%3E%20B%3A%20%22345%22%20Range%200-2047%3B%0AB%20-%3E%20C%3A%20%7B%20%22moisture%22%20%3A%20%2217%22%7D%3B%0A%40enduml%3B"/>
 <p>
  
-**Case 3.** Wildcards (`+` single level,`#` multi level) are available but need more control over MQTT messasges? 
+**Case 3.** Wildcards (`+` single level,`#` multi level) are available but need more control over MQTT messasges. 
 
 
 <p align="center">
@@ -49,7 +49,7 @@ For example,
 
 Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept rather than redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
 
-`mosquitto__rule_engine()` is called from `send__real_publish()`. Based on `topic`, either no rule or user-defined lua script is executed.
+`mosquitto__rule_engine()` is called from `send__real_publish()`. Based on `topic`, either no rule or user created lua script is executed.
 
 ```
 int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup)
