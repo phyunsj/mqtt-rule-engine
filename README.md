@@ -47,7 +47,7 @@ For example,
 
 lua script (or none) linked to the certain `topic` is executed. Two return parameters are examined by the caller `mosquitto__rule_engine()`. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
 
-For example, `filter` function. If temperature < 100 (or < 10), it will be dropped.
+For example, `filter` function. If temperature < 100 (or > 10), it will be dropped.
 ```
 function action(a)
     if type(tonumber(a)) == "number" then
