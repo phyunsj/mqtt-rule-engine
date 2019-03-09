@@ -35,7 +35,6 @@ For example,
  
 **Case 3.** Wildcards (`+` single level,`#` multi level) are available but need more control over MQTT messasges? 
 
-FYI [MQTT Topics & Best Practices](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) 
 
 <p align="center">
 <img  width="500px" alt="Alt Text" src="https://g.gravizo.com/svg?%40startuml%3B%0Ahide%20footbox%3B%0Aentity%20%20Sensor%3B%0Aparticipant%20%22Publisher%22%20as%20A%3B%0Aparticipant%20%22Broker%22%20as%20B%3B%0Aparticipant%20%22Subscriber%20A%22%20as%20C%3B%0A...%3B%0Anote%20over%20B%3A%203.%20Distribute%20MQTT%20message%3B%0ASensor%20-%3E%20A%3ARead%20Sensor%20%3B%0AA%20-%3E%20B%3A%20%22110%22%20Temperature%20F%3B%0AB%20-%3E%20C%3A%20%22110%22%20Temperature%20F%3B%0Acreate%20%22Subscriber%20B%22%3B%0AB%20--%3E%20%22Subscriber%20B%22%3A%20warning%20if%20temp%20%3E%20100%20F%20%3B%0A%40enduml"/>
@@ -44,11 +43,13 @@ FYI [MQTT Topics & Best Practices](https://www.hivemq.com/blog/mqtt-essentials-p
 
 ## Implementation
 
-:pushpin: This is langualge/framework-specific example. Therefore, the actual implemenation can be varied.
+:pushpin: This is langualge/framework-specific example ( Eclipse mosquitto 1.5.7 MQTT broker + sqlite + lua). Therefore, the actual implemenation can be varied.
 
 **Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
 
-TBD
+Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to manage MQTT rules with minimum changes (less invasive. My goal is to prove the concept not about redesinging the existing package.) The updated version is available [here](). 
+
+
 
 #### Related Posts:
 
@@ -57,3 +58,5 @@ TBD
 - [Tiny C Compiler](https://bellard.org/tcc/)
 - [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/)
 - [Integerating Lua into C/C++](https://www.cs.usfca.edu/~galles/cs420/lecture/LuaLectures/LuaAndC.html)
+- [MQTT Topics & Best Practices](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) 
+
