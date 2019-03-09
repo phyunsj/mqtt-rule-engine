@@ -70,7 +70,14 @@ Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to app
 `mosquitto__rule_engine()` is called from `send__real_publish()`. Based on `topic`, either no rule or user created lua script is executed.
 
 ```
-int send__real_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup)
+int send__real_publish(struct mosquitto *mosq, 
+                       uint16_t mid, 
+                       const char *topic, 
+                       uint32_t payloadlen, 
+                       const void *payload, 
+                       int qos, 
+                       bool retain, 
+                       bool dup)
 {
   ...
   // Apply rules to build "packet"
