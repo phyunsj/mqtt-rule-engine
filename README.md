@@ -130,7 +130,7 @@ OK
 
 ## Remaining Questions
 
-**How to update or add new function? How to link between `topic` and `function`?**  :bulb: Specify $SYS topic and update SQL table with MQTT message(s) accordingly. Web applicattion is another option to manage SQL table as well as a script (function) editing. 
+**How to update or add new function? How to link between `topic` and `function`?**  :bulb: 1. Specify $SYS topic and update SQL table with MQTT message(s) accordingly, 2. Web applicattion is another option to manage SQL table as well as a script (function) editing, 3. Suspend MQTT broker, swap SQLite database and restart MQTT broker, etc.
 
 #### Related Posts:
 
