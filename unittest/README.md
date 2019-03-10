@@ -34,22 +34,6 @@ Tests run: 21
 
 #### SQLite Database for unittest
 
-- `topicTable`
-
-| MQTT topic (key)  | function name |
-| ------------- | ------------- |
-|city/building11/floor1/temperature|noaction|
-|city/building12/floor1/temperature|filter|
-|city/building12/floor2/humidity|convert||
-
-- `funcTable`
-
-| function name (key)  | function code |
-| ------------- | ------------- |
-|noaction| ... |
-|filter| ... |
-|convert| ... ||
-
 ```
 $ sqlite3 code.db
 SQLite version 3.24.0 2018-06-04 14:10:15
