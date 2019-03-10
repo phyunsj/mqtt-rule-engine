@@ -99,6 +99,8 @@ $ pip install mock
 
 #### Console Output
 
+**test script** [mqtt_rule_test.py](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/mqtt_rule_test.py)
+
 ```
 $ python --version
 Python 2.7.15
@@ -123,20 +125,4 @@ OK
 $
 ```
 
-#### test script : [mqtt_rule_test.py](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/mqtt_rule_test.py)
 
-
-```
-   ...
-   # expect { 'temperature' : 110 } since temperature > 100. 
-   def test_4_filter_warn(self):
-        self.mock_callback.reset_mock() 
-        print("Publishing message to topic","city/building12/floor1/temperature")
-        self.client.publish("city/building12/floor1/temperature","110")
-        time.sleep(5)
-        self.assertTrue(self.mock_callback.called)
-        name, args, kwargs =  self.mock_callback.mock_calls[0] 
-        # args[2] : MQTT Message
-        self.assertEqual( args[2].payload , "{ 'temperature' : 110 }")
-   ...
- ```
