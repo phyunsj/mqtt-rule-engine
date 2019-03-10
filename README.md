@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Exploring an idea to apply user-defined rule(s) on published MQTT messages. 
+Exploring an idea to apply user-defined rule(s) on published MQTT messages. The main purpose is to manage MQTT messages before it reaches Cloud Platform. 
 
 ## Rule 
 
@@ -43,9 +43,9 @@ For example,
 
 ## Implementation
 
-:pushpin: This is langualge/framework-specific example ( Eclipse mosquitto 1.5.7 MQTT broker + sqlite + lua). Therefore, the actual implemenation can be varied.
+:pushpin: This is langualge/framework-specific example ( Eclipse mosquitto 1.5.7 MQTT broker + sqlite + lua). 
 
-lua script (or none) linked to the certain `topic` is executed. Two return parameters are examined by the caller `mosquitto__rule_engine()`. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
+lua script (or none) linked to the certain `topic` is executed. Two parameters are examined by the caller `mosquitto__rule_engine()`. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
 
 For example, `filter` function. If temperature < 100 (or > 10), it will be dropped.
 ```
@@ -111,7 +111,7 @@ OK
 
 ## Remaining Questions
 
-**How to update or add new function? How to link between `topic` and `function`?**  :bulb: Specify $SYS topic and update SQL table with MQTT message(s) accordingly. Of course, web applicattion is another option to manage SQL table. 
+**How to update or add new function? How to link between `topic` and `function`?**  :bulb: Specify $SYS topic and update SQL table with MQTT message(s) accordingly. Web applicattion is another option to manage SQL table as well as a script (function) editing. 
 
 #### Related Posts:
 
