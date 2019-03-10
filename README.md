@@ -87,7 +87,7 @@ int send__real_publish(struct mosquitto *mosq,
 
 `handler_publish()` from `src/handle_publish.c` manages new topic (insert new topic into topicTable if it doesn't exit). Assing `noaction` for new entry. 
 
-#### [Test Results](https://github.com/phyunsj/mqtt-rule-engine/tree/master/unittest)
+#### [Test Results & UnitTest](https://github.com/phyunsj/mqtt-rule-engine/tree/master/unittest) 
 
 ```
 $ python mqtt_rule_test.py
