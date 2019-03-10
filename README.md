@@ -55,7 +55,9 @@ lua script (or none) linked to the certain `topic` is executed.
 |:arrow_right: **city/building12/floor1/temperature** |**filter**|
 |city/building12/floor2/humidity|convert||
 
-- `funcTable` ( In order to keep compiled code instead. See [`make lua_compile`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/Makefile) and `test_compiled_filter` from [`unittest.c`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/unittest.c) ).
+- `funcTable` 
+
+In order to keep compiled code instead. See [`make lua_compile`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/Makefile) and `test_compiled_filter` from [`unittest.c`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/unittest.c).
 
 | function name (key)  | function code |
 | ------------- | ------------- |
