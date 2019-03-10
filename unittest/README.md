@@ -128,7 +128,7 @@ $
 
 ```
    ...
-   # expect { 'temperature' : 110 } since temperature > 10. 
+   # expect { 'temperature' : 110 } since temperature > 100. 
    def test_4_filter_warn(self):
         self.mock_callback.reset_mock() 
         print("Publishing message to topic","city/building12/floor1/temperature")
