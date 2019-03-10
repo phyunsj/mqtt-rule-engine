@@ -45,9 +45,28 @@ For example,
 
 :pushpin: This is langualge/framework-specific example ( Eclipse mosquitto 1.5.7 MQTT broker + sqlite + lua). 
 
-lua script (or none) linked to the certain `topic` is executed. Two parameters are examined by the caller `mosquitto__rule_engine()`. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
+lua script (or none) linked to the certain `topic` is executed. 
 
-For example, `filter` function. If temperature < 100 (or > 10), it will be dropped.
+- `topicTable`
+
+| MQTT topic (key)  | function name |
+| ------------- | ------------- |
+|city/building11/floor1/temperature|noaction|
+|:arrow_right: **city/building12/floor1/temperature** |**filter**|
+|city/building12/floor2/humidity|convert||
+
+- `funcTable`
+
+| function name (key)  | function code |
+| ------------- | ------------- |
+|noaction| function action(a) ... end |
+|:arrow_right: **filter**  | **function action(a) ... end** |
+|convert| function action(a) ... end ||
+
+
+Two parameters are examined by the caller afterwards. 1st parameter indicates whether or not to drop MQTT payload. 2nd parameter is the actual MQTT payload.
+
+For example, `filter`. If temperature < 100 (or > 10), it will be dropped.
 ```
 function action(a)
     if type(tonumber(a)) == "number" then
@@ -63,7 +82,7 @@ function action(a)
 end
 ```
 
-**Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Specially easy string manupulation. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
+**Why Lua?** Lua provides _simple_, _embeddable scripting_ capabilities to work with C/C++ applications. Designing DSL(Domain-Specific-Language) might be another option. Alternatively, C/C++ interpreter like [Tiny C Compiler](https://bellard.org/tcc/) or [Ch : C/C++ interpreter](https://www.softintegration.com/products/raspberry-pi/) can be used.
 
 Upon reviewing mosquitto sources, `lib/send_publish.c` is the ideal place to apply MQTT rules with minimum changes (My goal is to prove the concept rather than redesinging the existing package.) The updated version is available [here](https://github.com/phyunsj/mqtt-rule-engine/blob/master/send_publish.c). 
 
