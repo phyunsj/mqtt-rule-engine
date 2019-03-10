@@ -57,7 +57,7 @@ lua script (or none) linked to the certain `topic` is executed.
 
 - `funcTable` 
 
-In order to keep compiled code instead. See [`make lua_compile`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/Makefile) and `test_compiled_filter` from [`unittest.c`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/unittest.c).
+In order to keep compiled code, see [`make lua_compile`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/Makefile) and `test_compiled_filter()` from [`unittest.c`](https://github.com/phyunsj/mqtt-rule-engine/blob/master/unittest/unittest.c).
 
 | function name (key)  | function code |
 | ------------- | ------------- |
