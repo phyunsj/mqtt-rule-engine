@@ -134,6 +134,14 @@ OK
 
 **How to update or add new function? How to link between `topic` and `function`?**  :bulb: 1. Specify $SYS topic and update SQL table with MQTT message(s) accordingly, 2. Web applicattion is another option to manage SQL table as well as a script (function) editing, 3. Suspend MQTT broker, swap SQLite database and restart MQTT broker, etc.
 
+## Another Option 
+
+`#` topic subscriber listens all messages and re-distributes (or change ) MQTT payload.
+
+<p align="center">
+<img src="https://github.com/phyunsj/mqtt-rule-engine/blob/master/node-red-rule-engine.png" width="700px"/>
+</p>
+
 #### Related Posts:
 
 - [Web Thing API Specification](https://iot.mozilla.org/wot/#example-2-a-more-complex-thing-description-with-semantic-annotations)
